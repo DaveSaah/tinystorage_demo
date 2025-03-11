@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tiny_storage/tiny_storage.dart';
 import 'package:tiny_locator/tiny_locator.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize TinyStorage and register it with tiny_locator
-  final storage = await TinyStorage.init('user_data.txt', path: './tmp');
+  // Get a persistent storage directory
+  final directory = await getApplicationDocumentsDirectory();
+  final storagePath = '${directory.path}/user_data.txt';
+
+  // Initialize TinyStorage with persistent path
+  final storage = await TinyStorage.init(storagePath);
+
+  // Register storage instance with tiny_locator
   locator.add<TinyStorage>(() => storage);
 
   runApp(const MyApp());
