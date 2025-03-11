@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   tiny_storage: ^1.3.0
+  tiny_locator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:
